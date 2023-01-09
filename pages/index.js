@@ -4,15 +4,18 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
+import LoginButton from "../components/login-btn";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const randomWords = require('random-words');
 
+function getRandomPrompt() {return randomWords({ exactly: 3, join: ' ' })}
+
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
-  const [prompt, setPrompt] = useState(randomWords({ exactly: 3, join: ' ' }));
+  const [prompt, setPrompt] = useState(getRandomPrompt());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +52,12 @@ export default function Home() {
   };
 
   const handleReset = e => {
-    setPrompt(randomWords({ exactly: 3, join: ' ' }));
+    setPrompt(getRandomPrompt());
+  };
+
+  function handleHamburgerClick() {
+    var navLink = document.querySelector('.nav__link');
+    navLink.classList.toggle('hide');
   };
 
   return (
@@ -57,6 +65,26 @@ export default function Home() {
       <Head>
         <title>Mashmon the Game</title>
       </Head>
+
+      <header>
+        <nav className="nav">
+          <a href="/" className="logo">logo</a>
+
+          <div className="hamburger" onClick={handleHamburgerClick}>
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </div>
+
+          <div className="nav__link hide">
+            <a href="#">home</a>
+            <a href="#">about</a>
+            <a href="#">contact</a>
+            <a href="#"><LoginButton></LoginButton></a>
+          </div>
+        </nav>
+      </header>
+
 
       <p>
         Mash your Mosters, powered by {" "}

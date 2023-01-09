@@ -17,8 +17,13 @@
     "eslint-config-next": "13.1.1",
     "fortawesome": "^0.0.1-security",
     "next": "13.1.1",
+    "next-auth": "^4.18.8",
     "random-words": "^1.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.26"
   }
 }
