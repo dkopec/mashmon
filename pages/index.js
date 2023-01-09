@@ -1,16 +1,25 @@
 import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from "../components/login-btn";
+import { generateSlug } from "random-word-slugs";
+
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const randomWords = require('random-words');
-
-function getRandomPrompt() {return randomWords({ exactly: 3, join: ' ' })}
+//https://www.npmjs.com/package/random-word-slugs
+function getRandomPrompt() { 
+  const options = {
+  categories: {
+    noun: ["animals", "food", "people", "thing"],
+  },
+};
+  return generateSlug(3, options)
+};
 
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
@@ -68,8 +77,7 @@ export default function Home() {
 
       <header>
         <nav className="nav">
-          <a href="/" className="logo">logo</a>
-
+          <Link href="/">logo</Link>
           <div className="hamburger" onClick={handleHamburgerClick}>
             <span className="line"></span>
             <span className="line"></span>
