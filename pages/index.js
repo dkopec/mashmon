@@ -6,19 +6,20 @@ import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from "../components/login-btn";
-import { generateSlug } from "random-word-slugs";
-
+import { generateSlug, RandomWordOptions, totalUniqueSlugs } from "random-word-slugs";
+import NavBar from "../components/navbar"
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 //https://www.npmjs.com/package/random-word-slugs
-function getRandomPrompt() { 
+function getRandomPrompt() {  
   const options = {
-  categories: {
-    noun: ["animals", "food", "people", "thing"],
-  },
-};
-  return generateSlug(3, options)
+    format: "lower",
+    categories: {
+      noun: ["animals", "food", "people", "thing"],
+    },
+  };
+  return generateSlug(3, options).replace("-", " ");
 };
 
 export default function Home() {
@@ -75,28 +76,11 @@ export default function Home() {
         <title>Mashmon the Game</title>
       </Head>
 
-      <header>
-        <nav className="nav">
-          <Link href="/">logo</Link>
-          <div className="hamburger" onClick={handleHamburgerClick}>
-            <span className="line"></span>
-            <span className="line"></span>
-            <span className="line"></span>
-          </div>
-
-          <div className="nav__link hide">
-            <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">contact</a>
-            <a href="#"><LoginButton></LoginButton></a>
-          </div>
-        </nav>
-      </header>
-
+      <NavBar></NavBar>
 
       <p>
         Mash your Mosters, powered by {" "}
-        <a href="https://replicate.com/lambdal/text-to-pokemon/">lambdal/text-to-pokemon</a>:
+        <Link href="https://replicate.com/lambdal/text-to-pokemon/">lambdal/text-to-pokemon</Link>
       </p>
 
       <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
