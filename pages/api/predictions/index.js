@@ -1,8 +1,8 @@
 import { unstable_getServerSession } from "next-auth/next"
 import authOptions from "../auth/[...nextauth]"
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, setDoc } from 'firebase/firestore/lite';
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { getFirestore, collection, setDoc } from 'firebase/firestore/lite';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
